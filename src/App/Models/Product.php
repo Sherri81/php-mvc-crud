@@ -80,3 +80,15 @@ public function insert(array $data): int|bool
 
         return $stmt->execute();
 }
+    public function delete(string $id): bool
+    {
+        $sql = "DELETE FROM `products` WHERE id = :id";
+
+        $conn = $this->getConnection();
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
